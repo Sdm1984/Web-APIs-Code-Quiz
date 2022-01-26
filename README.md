@@ -86,6 +86,7 @@ This homework is graded based on the following criteria:
 
 You are required to submit BOTH of the following for review:
 
-* The URL of the functional, deployed application.
+* The URL of the functional, deployed application.  https://sdm1984.github.io/Web-APIs-Code-Quiz/
 
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
+* The URL of the GitHub repository, with a unique name and a readme describing the project. https://github.com/Sdm1984/Web-APIs-Code-Quiz/settings/pages
+
