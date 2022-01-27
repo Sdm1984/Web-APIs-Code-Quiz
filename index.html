@@ -4,27 +4,31 @@
     <title>Coding Quiz</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+    <link href="./assets/style.css" rel="stylesheet"/>
+
   </head>
   <body>
     <header>
       <div id= "large-font">View Highscores</div>
-            <button id="start-button"> Start</button>
-      <div id="question"> <p> Question</p></div>
-          </div>
-          <div id="code-quiz"></div>
-          <button id="submit"> Your Results</button>
-          <div id="final-results"></div>
-  </div id = "options">
-      <div class = "options" id = "A" onclick="checkAnswer('A')">A</div>
-      <div class = "options" id = "B" onclick="checkAnswer('B')">B</div>
-      <div class = "options" id = "C" onclick="checkAnswer('C')">C</div>
-      <div class = "options" id = "D" onclick="checkAnswer('D')">D</div>
-  </div>
-    
-  </div>
-  <div id="scoreBox" style="display: none;"></div>
-   </div>
-   <script src="assets/script.js"></script>
+        
+    <body class="correct">
+     <div class="container">
+       <div id="question-container" class="hide">
+         <div id = "question">Question</div>
+         <div id="response-buttons" class="button-style">
+           <button class = "button">A</button>
+           <button class = "button">B</button>
+           <button class = "button">C</button>
+           <button class = "button">D</button>
+       </div>
+           
+       <div class="master">
+       <button id="start-button" class="start-button">Start</button>
+       <button id="next-button" class="next-button hide">Next</button>
+      </div>
+
+
+        
+   <script src="./assets/script.js"></script>
   </body>
 </html>

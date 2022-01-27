@@ -1,103 +1,193 @@
 //Javascript Code Quiz- Source: https://www.javatpoint.com/javascript-mcq
 
-var secondsLeft = 60
-function startTimer () {
-var timer = setInterval(function (){
-secondsLeft--;
-console.log(secondsLeft)
-},1000) 
-
-}   
-
-//WHEN I click the start button
-var startButton = document.querySelector(".start-button")
-startButton.addEventListener("click",function() {
-startTimer ()   
-})
+const startButton = document.getElementById('start-button')
+const nextButton = document.getElementById('next-button')
+const questionContainerElement = document.getElementById('question-container')
+const questionElement = document.getElementById('question')
+const answerButtonsElement = document. getElementById ('answer-buttons')
 
 
-//THEN a timer starts and I am presented with a question and WHEN I answer a question, THEN I am presented with another question
-var quizQuestions = [
-{ question: "A collection of elements of the same data type which may either in order or not, is called _____.",
-choiceA:"String",
-choiceB:"Array",
-choiceC:"Serialized Object",
-choiceD:"Object",
-correct:"B"
-},
+let mixQuestions, currentQuestionList
 
-{ question: "Which one of the following is known as the Equality operator, which is used to check whether the two values are equal or not?",
-choiceA:"=",
-choiceB:"===",
-choiceC:"==",
-choiceD:"&&",
-correct:"C"
-},
+startButton.addEventListener('click', beginQuiz)
+nextButton.addEventListener('click'), () => {
+	currentQuestionList++
+	setNextQuestion()
+};
 
-{ question: "Which type of JavaScript language is ___",
-choiceA:"Object-Oriented",
-choiceB:"Object-Based",
-choiceC:"Assembly-language",
-choiceD:"High-level",
-correct:"B"
-},
 
-{question:"Which one of the following also known as Conditional Expression:",
-choiceA:"Alternative to if-else",
-choiceB:"Switch statement",
-choiceC:"If-then-else statement",
-choiceD:"immediate if",
-correct:"D"
-},
+function beginQuiz(){
+	startButton.classList.add('hide')
+	mixQuestions = questions.sort(() => Math.random()- .10)
+	currentQuestionList = 0
+	questionContainerElement.classList.remove('hide')
+	NextQuestion()
 
-{question:"In JavaScript, what is a block of statement?",
-choiceA:"Conditional block",
-choiceB:"block that combines a number of statements into a single compound statement",
-choiceC:"both conditional bloack and a single statement",
-choiceD:"block that contains a single statement",
-correct:"B"
-},
-
-{question:"In the JavaScript, which one of the following is not considered as an error:",
-choiceA:"Syntax error",
-choiceB:"Missing of semicolons",
-choiceC:"Division by zero",
-choiceD:"Missing of bracket",
-correct:"C"
-},
-
-{question:"In JavaScript, what will be used for calling the function definition expression:",
-choiceA:"Function prototype",
-choiceB:"Function literal",
-choiceC:"Function calling",
-choiceD:"Function declaration",
-correct:"B"
-},
-
-{question:"Which one of the following is not considered as statement in the JavaScript?",
-choiceA:"use strict",
-choiceB:"debugger",
-choiceC:"if",
-choiceD:"with",
-correct:"A"
-},
-
-{question:"A set of unordered properties that, has a name and value is called______",
-choiceA:"String",
-choiceB:"Array",
-choiceC:"Serialized Object",
-choiceD:"Object",
-correct:"D"
-},
-
-{question:"The linkage of a set of prototype objects is known as____",
-choiceA:"prototype stack",
-choiceB:"prototype",
-choiceC:"prototype class",
-choiceD:"prototype chain",
-correct:"D"
 }
+
+function NextQuestion(){
+	resetState()
+	seeQuestion(mixQuestions[currentQuestionList])
+
+}
+
+function seeQuestion (question){
+	questionElement.innerText = question.question
+	question.answers.forEach(answer => {
+		const button = document.createElement('button')
+		button.innerText = answer.text
+		button.classList.add('button')
+		if (answer.correct){
+			button.dataset.correct = answer.correct
+		}
+		button/addEventListener('click', chooseAnswer)
+		answerButtonsElement.appendChild(button)
+	})
+}
+
+function resetState(){
+	nextButton.classList.add('hide')
+	while (answerButtonsElement.firstChild){
+		answerButtonsElement.removeChild
+		(answerButtonsElement.firstChild)
+		
+   }
+}
+
+function chooseAnswer(e){
+	const selectedButton = e.target 
+	const correct = selectedButton.dataset.correct
+	setStatusClass(document.body, correct)
+	Array.from(answerButtonsElement.children).forEach(button => {
+		setStatusClass(button, button.dataset.correct)
+   })
+   if (mixQuestions.length > currentQuestionList + 1) {
+   nextButton.classList.remove('hide')
+}  else {
+	startButton.innerText ='Restart'
+	startButton.classList.remove('hide')
+   }
+}
+
+function setStatusClass(element, correct){
+   clearStatusClass(element)
+   if (correct) {
+	   element.classList.add('correct')
+   } else{
+	   element.classList.add('wrong')
+   }
+}
+
+
+function clearStatusClass(element){
+	element.classList.remove('correct')
+	element.classList.remove('wrong')
+}
+
+const questions = [
+{
+	question: "A collection of elements of the same data type which may either in order or not, is called _____.",
+	answers: [
+	{ text: "Array", correct: true },
+	{ text: "String", correct: false },
+	{ text:"Serialized Object", correct: false },
+	{ text:"Object", correct: false }
+  ]
+},
+
+{
+    question: "Which one of the following is known as the Equality operator, which is used to check whether the two values are equal or not?",
+	answers: [
+	{text: "=", correct: false },
+	{text: "===", correct: false },
+	{text: "==", correct: true },
+	{text: "&&", correct: false }
+  ]
+},
+
+{   
+	question: "Which type of JavaScript language is ___",
+    answers: [
+	{text:"Object-Oriented",correct: false },
+	{text:"Object-Based",correct: true },
+	{text:"Assembly-language",correct: false },
+	{text:"High-level",correct: false }
+  ]
+},
+
+{
+	question:"Which one of the following also known as Conditional Expression:",
+	answers: [
+	{text:"Alternative to if-else",correct: false },
+	{text:"Switch statement", correct: false },
+	{text:"If-then-else statement", correct: false },
+	{text:"immediate if",correct: true }
+  ]
+},
+
+{
+	question:"In JavaScript, what is a block of statement?",
+	answers: [
+	{text:"Conditional block", correct: false },
+	{text:"block that combines a number of statements into a single compound statement", correct: true },
+	{text:"both conditional bloack and a single statement", correct: false },
+	{text:"block that contains a single statement", correct: false }
+  ]
+},
+
+{
+	question:"In the JavaScript, which one of the following is not considered as an error:",
+	answers: [
+	{text:"Syntax error", correct: false },
+	{text:"Missing of semicolons", correct: false },
+	{text:"Division by zero", correct: true },
+	{text:"Missing of bracket",correct: false }
+
+  ]
+},
+
+{
+	question:"In JavaScript, what will be used for calling the function definition expression:",
+	answers: [
+	{text:"Function prototype", correct: false },
+	{text:"Function literal", correct: true },
+	{text:"Function calling",correct: false },
+	{text:"Function declaration", correct: false }
+  ]
+},
+
+{
+	question:"Which one of the following is not considered as statement in the JavaScript?",
+	answers: [
+	{text:"use strict", correct: true },
+	{text:"debugger", correct: false },
+	{text:"if", correct: false },
+	{text:"with", correct: false }
+
+  ]
+},
+
+{
+	question:"A set of unordered properties that, has a name and value is called______",
+    answers: [
+    {text:"String", correct: false },
+    {text:"Array", correct: false },
+    {text:"Serialized Object", correct: false },
+    {text:"Object", correct: true }
+
+ ]
+},
+
+{
+	question:"The linkage of a set of prototype objects is known as____",
+    answers: [
+    {text:"prototype stack", correct: false },
+    {text:"prototype", correct: false },
+    {text:"prototype class", correct: false },
+    {text:"prototype chain", correct: true }
 ]
+}
+
 
 
 //WHEN I answer a question incorrectly THEN time is subtracted from the clock
