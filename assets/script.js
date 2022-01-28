@@ -17,7 +17,7 @@ nextButton.addEventListener('click'), () =>{
 
 function startQuiz(){
 beginButton.classList.add("hide")
-mixQuestions = questions.sort(() => Math.random() - .5)
+mixQuestions = questions.sort(() => Math.random() - .10)
 currentQuestion = 0
 codeContainerElement.classList.remove("hide")
 setNextQuestion()
@@ -89,7 +89,7 @@ function clearStatusClass(element){
 	element.classList.remove('wrong')
 }
 
-//WHEN I answer a question incorrectly THEN time is subtracted from the clock , come back to this
+//WHEN I answer a question incorrectly THEN time is subtracted from the clock , come back to this on resubmit
 
 const questions = [
 	{
