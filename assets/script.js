@@ -1,22 +1,95 @@
 //Javascript Code Quiz- Source: https://www.javatpoint.com/javascript-mcq
 
-var questions = 
-var score = 0;
+const beginButton = document.getElementById("begin-btn")
+const nextButton = document.getElementById("next-btn")
+const codeContainerElement = document.getElementById("code-container")
+const questionElement = document.getElementById("question")
+const responseButtonsElement = document.getElementById ("response-buttons")
+
+let mixQuestions, currentQuestion
+
+beginButton.addEventListener('click', startQuiz)
+nextButton.addEventListener('click'), () =>{
+	currentQuestion++
+	setnextQuestion()
+}
 
 
+function startQuiz(){
+beginButton.classList.add("hide")
+mixQuestions = questions.sort(() => Math.random() - .5)
+currentQuestion = 0
+codeContainerElement.classList.remove("hide")
+setNextQuestion()
 
-for (var i=0; i < questions.length; i ++){
-	var response = window.xxx(questions[i]xxx.);
-	if(response == questions[i].answer){
-		score++;
-		alert("Correct!");
-	}else {
-		alert("Wrong!");
+}
+
+function setnextQuestion(){
+ resetState()
+ showQuestion(mixQuestions)[currentQuestion]
+
+
+}
+
+function showQuestion(question) {
+	questionElement.innerText = question.question
+	question.answers.forEach(answer =>{
+	const button = document.createElement ("button")
+	button.innerText = answer.text 
+	button.classList.add ("button")
+	if (answer.correct){
+		button.dataset.correct = answer.correct
+	}
+	button.addEventListener ('click', chooseAnswer)
+	responseButtonsElement.appendChild(button)
+
+	})
+		
+
+}
+
+function resetState(){
+	clearStatusClass(document.body)
+	nextButton.classList.add("hide")
+	while (responseButtonsElement.firstChild) {
+		responseButtonsElement.removeChild
+		(responseButtonsElement.firstChild)
 	}
 }
-alert("you got " + score + "/" + questions.length);
 
-//WHEN I answer a question incorrectly THEN time is subtracted from the clock
+function chooseAnswer(e){
+	const selectedButton = e.target
+	const correct = selectedButton.dataset.correct
+	setStatusClass(document.body, correct)
+	Array.from(responseButtonsElement.children).forEach(button => {
+		setStatusClass(button, button.dataset.correct)
+	})
+	if (mixQuestions.length > currentQuestion + 1){
+    	nextButton.classList.remove ("hide")	
+	} else{
+		beginButton.innerText = 'Restart'
+		beginButton.classList.remove("hide")
+	}
+
+
+}
+
+function setStatusClass(element, correct) {
+	clearStatusClass(element)
+	if (correct){
+		element.classList.add('correct')
+	} else {
+		element.classList.add ('wrong')
+	}
+	
+}
+
+function clearStatusClass(element){
+	element.classList.remove('correct')
+	element.classList.remove('wrong')
+}
+
+//WHEN I answer a question incorrectly THEN time is subtracted from the clock , come back to this
 
 const questions = [
 	{

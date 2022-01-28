@@ -4,7 +4,14 @@
 
 }
 
+:root {
+	--hue-neutral: 200;
+	--hue-wrong:0
+	--hue-correct: 140;
+}
+
 body{
+	--hue: (var(--hue-neutral);
 	padding: 0;
 	margin: 0;
 	display: flex;
@@ -12,15 +19,22 @@ body{
 	justify-content: center;
 	height: 100vh;
 	width: 100vw;
-	background-color: white
+	background-color: hsl(var(--hue), 100%, 30%);
 	
+{
+
+.body.correct {
+	--hue: (var(--hue-correct);
+}
+
+body.wrong {
+	--hue: (var(--hue-wrong);
 }
 
 #view-high-scores{
-	font-size:x-large;
+	font-size:xx-large;
 	color: rgb(134, 61, 134);
-	align-items: left;
-	
+			
 		
 }
 
@@ -49,23 +63,33 @@ header{
 .button:hover{
 	border-color: black;
 }
+.button.correct{
+--hue: var(--hue-correct);
+color: black;
+
+}
+.button.wrong{
+--hue: var(--hue-correct);
+}
+
 
 .box-grid {
 	display: grid;
-	grid-template-columns: repeat(2), auto;
+	grid-template-columns: repeat(2, auto);
 	gap: 20px;
 	margin: 50px 0;
 	
 }
 
 .button{
+	--hue: var(--hue-neutral);
+	background-color: hsl(var(--hue), 100%, 50%);
 	border-radius: 10px;
-	border: 20px solid pink;
-	background-color: rgb(134, 61, 134);
+	border: 20px solid hsl(var(--hue), 100%, 30%);
 	font-family: fantasy;
 	font-size: large;
 	padding: 20px 10px;
-	color:white;
+	color: white;
 	outline: none;
 	margin: 10px;
 	gap: 40px
@@ -74,24 +98,31 @@ header{
 .begin-btn, .next-btn {
 	font-size: 2.0rem;
 	padding: 10px 20px;
-	color:rgb(134, 61, 134);
 	font-weight: 200px;
+
 	
 }
 
+.navigation {
+	display: flex;
+	justify-content: center;
+	align-items:center;
+}
 
-.box {
+.box {  /* We first create a flex layout context */
+	display: flex;
 	width: 700px; 
 	max-width: 200%;
 	background-color: white;
 	border-radius: 10px;
 	padding: 15px;
 	box-shadow:0 0 10px 2px;
+	flex-flow: row wrap;
+	justify-content: space-around;  /* Then we define how is distributed the remaining space */
+	
 }
 
-.navigation {
-	display:flex;
-	justify-content: center;
-	align-items: center;
+.hide {
+	display: none;
+	
 }
-
