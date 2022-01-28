@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Coding Quiz</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="./assets/style.css" rel="stylesheet"/>
-
+    <title>Coding Quiz</title>
+    
   </head>
   <body>
-    <header>
-      <div id= "large-font">View Highscores</div>
-        
-    <body class="correct">
-     <div class="container">
-       <div id="question-container" class="hide">
-         <div id = "question">Question</div>
-         <div id="response-buttons" class="button-style">
-           <button class = "button">A</button>
-           <button class = "button">B</button>
-           <button class = "button">C</button>
-           <button class = "button">D</button>
-       </div>
-           
-       <div class="master">
-       <button id="start-button" class="start-button">Start</button>
-       <button id="next-button" class="next-button hide">Next</button>
+    <button id="view-high-scores">View Highscores</button>
+    </div>
+    <div>
+     
+    </div>
+
+
+  </header>  
+    <div class ="box">
+    <div id="code-container" class ="hide">
+    <div id="question">Question</div>
+    <div id="response-buttons" class ="box-grid"></div>
+           <button class = "button">Answer A</button>
+           <button class = "button">Answer B</button>
+           <button class = "button">Answer C</button>
+           <button class = "button">Answer D</button>
       </div>
-
-
-        
+    </div>
+    <div class ="navigation">
+        <button id ="begin-btn" class="begin-btn btn">Start</button>
+        <button id ="next-btn"  class="next-btn btn hide">Next</button>
+      </div>
+     </div>
+    </body>
+          
    <script src="./assets/script.js"></script>
-  </body>
+  
 </html>
