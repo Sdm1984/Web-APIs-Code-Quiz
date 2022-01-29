@@ -6,12 +6,11 @@
 
 :root {
 	--hue-neutral: 200;
-	--hue-wrong:0
+	--hue-wrong:0;
 	--hue-correct: 140;
 }
 
 body{
-	--hue: (var(--hue-neutral);
 	padding: 0;
 	margin: 0;
 	display: flex;
@@ -19,16 +18,15 @@ body{
 	justify-content: center;
 	height: 100vh;
 	width: 100vw;
-	background-color: hsl(var(--hue), 100%, 30%);
-	
-{
+	background-color: hsl(var(--hue-neutral), 100%, 30%);
+}
 
 body.correct {
-	--hue: (var(--hue-correct);
+	background-color: hsl(var(--hue-correct), 100%, 30%);
 }
 
 body.wrong {
-	--hue: (var(--hue-wrong);
+	background-color: hsl(var(--hue-wrong), 100%, 30%);
 }
 
 #view-high-scores{
@@ -64,7 +62,6 @@ header{
 }
 .button.correct{
 --hue: var(--hue-correct);
-color: black;
 
 }
 .button.wrong{
