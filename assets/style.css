@@ -4,6 +4,14 @@
 
 }
 
+#heading {
+	align-items: center;
+	justify-content: center;
+	font-size: xxx-large;
+	color:black;
+
+}
+
 :root {
 	--hue-neutral: 200;
 	--hue-wrong:0;
@@ -107,9 +115,11 @@ header{
 	max-width: 50%;
 	background-color: white;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 20px;
 	box-shadow:0 0 10px 2px;
 	flex-flow: row wrap;
 	justify-content: space-around;  /* Then define how is distributed*/
 	
 }
+
+
