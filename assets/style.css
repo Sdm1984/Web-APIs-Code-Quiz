@@ -4,6 +4,7 @@
 
 }
 
+/* Black font "Welcome to the JavaScript Jackpot Quiz*/
 #heading {
 	align-items: center;
 	justify-content: center;
@@ -11,13 +12,14 @@
 	color:black;
 
 }
-
+/* Color will change depending on whether user answers correctly or wrong*/
 :root {
 	--hue-neutral: 200;
 	--hue-wrong:0;
 	--hue-correct: 140;
 }
 
+/* Basic body formatting*/
 body{
 	padding: 0;
 	margin: 0;
@@ -42,25 +44,8 @@ body.wrong {
 	color: black;
 	font-weight:normal;
 
-	
 }
-
-header{
-	justify-content: space-between;
-	font-size: large;
-	text-align: left;
-	display: flex;
-	flex-wrap: wrap;
-	list-style: none;
-	color: rgb(150, 46, 150);
-	height: 80px;
-	padding-top: 10px;
-	padding-right: 10px;
-	padding-left: 10px;
-	font-family: fantasy;
-	
-}
-
+/* Black color will appear when user hovers over answer boxes*/
 .button:hover{
 	border-color: black;
 }
@@ -72,7 +57,7 @@ header{
 --hue: var(--hue-correct);
 }
 
-
+/* Box grid style */
 .box-grid {
 	display: grid;
 	grid-template-columns: repeat(2, auto);
@@ -80,7 +65,7 @@ header{
 	margin: 20px 0;
 	
 }
-
+/* Answer button style */
 .button{
 	--hue: var(--hue-neutral);
 	background-color: hsl(var(--hue), 100%, 50%);
@@ -95,13 +80,14 @@ header{
 	gap: 40px
 }
 
+ /* Game button font-size and font-weight */
 .begin-btn, .next-btn {
 	font-size: 2.0rem;
 	padding: 10px 20px;
 	font-weight: 200px;
 	
 }
-
+/* Game button class style */
 .navigation {
 	display: flex;
 	justify-content: center;
