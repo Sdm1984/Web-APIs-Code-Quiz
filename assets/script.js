@@ -10,7 +10,7 @@ let timeSecond = 30;
 
 let mixQuestions, currentQuestion
 
-timeH.innerHTML = `00:${timeSecond}`;
+timeH.innerHTML = '00:${timeSecond}`
 
 const countDown = setInterval(() => {
 	timeSecond--;
@@ -24,7 +24,7 @@ const countDown = setInterval(() => {
 beginButton.addEventListener('click', startQuiz)
 nextButton.addEventListener('click', () => {
 	currentQuestion++
-	showQuestion()
+	showQuestion();
 
 }
 
