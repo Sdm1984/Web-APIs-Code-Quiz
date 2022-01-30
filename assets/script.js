@@ -8,6 +8,7 @@ const responseButtonsElement = document.getElementById("response-buttons")
 const timeH = document.querySelector('hBox');
 let timeSecond = 30;
 
+let mixQuestions, currentQuestion
 
 timeH.innerHTML = `00:${timeSecond}`;
 
@@ -19,8 +20,6 @@ const countDown = setInterval(() => {
 	}
 }, 1000)
 
-
-let mixQuestions, currentQuestion
 
 beginButton.addEventListener('click', startQuiz)
 nextButton.addEventListener('click', () => {
@@ -111,7 +110,7 @@ nextButton.addEventListener('click', () => {
 
 //WHEN I answer a question incorrectly THEN time is subtracted from the clock , come back to this on resubmit
 
-const questions = [
+questions = [
 	{
 		question: "A collection of elements of the same data type which may either in order or not, is called a _____.",
 		answers: ["Array", "String", "Serialized Object", "Object"],
