@@ -45,7 +45,6 @@ body.wrong {
 	
 }
 
-
 header{
 	justify-content: space-between;
 	font-size: large;
@@ -111,11 +110,14 @@ header{
 
 .box {  /* Create a flex layout context */
 	display: flex;
+	border:solid;
+	border-width: 10px;
+	margin: auto;
 	width: 400px; 
-	max-width: 50%;
+	height: auto;
 	background-color: white;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 10px;
 	box-shadow:0 0 10px 2px;
 	flex-flow: row wrap;
 	justify-content: space-around;  /* Then define how is distributed*/
