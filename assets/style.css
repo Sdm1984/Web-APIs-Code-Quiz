@@ -74,7 +74,7 @@ body.wrong {
 	font-family: fantasy;
 	font-size: large;
 	padding: 20px 10px;
-	color: white;
+	color: black;
 	outline: none;
 	margin: 10px;
 	gap: 40px
@@ -83,8 +83,10 @@ body.wrong {
  /* Game button font-size and font-weight */
 .begin-btn, .next-btn {
 	font-size: 2.0rem;
-	padding: 10px 20px;
+	padding: 5px 20px;
 	font-weight: 200px;
+	border: 8px solid;
+	margin: 5px
 	
 }
 /* Game button class style */
@@ -92,6 +94,7 @@ body.wrong {
 	display: flex;
 	justify-content: center;
 	align-items:center;
+	font-weight: bold;
 }
 
 .box {  /* Create a flex layout context */
