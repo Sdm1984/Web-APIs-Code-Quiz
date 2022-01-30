@@ -5,94 +5,114 @@ const nextButton = document.getElementById("next-btn")
 const codeContainerElement = document.getElementById("code-container")
 const questionElement = document.getElementById("question")
 const responseButtonsElement = document.getElementById ("response-buttons")
+const timeH = document.querySelector('hBox');
+let timeSecond = 30;
+
+
+timeH.innerHTML = `00:${timeSecond}`;
+
+const countDown = setInterval (() =>{
+	timeSecond--;
+	timeH.innerHTML = `00:${timeSecond}`;
+	if(timeSecond =0 || timeSecond<1){
+		clearInterval(countDown)
+	}
+},1000)
+
 
 let mixQuestions, currentQuestion
 
 beginButton.addEventListener('click', startQuiz)
-nextButton.addEventListener('click'), () =>{
-	currentQuestion++
-	setnextQuestion()
-}
-
-
-function startQuiz(){
-beginButton.classList.add("hide")
-mixQuestions = questions.sort(() => Math.random() - .10)
-currentQuestion = 0
-codeContainerElement.classList.remove("hide")
-setNextQuestion()
+nextButton.addEventListener('click', () => {
+  currentQuestion++
+  showQuestion()
 
 }
 
-function setnextQuestion(){
- resetState()
- showQuestion(mixQuestions)[currentQuestion]
+,
+
+function startQuiz() {
+	beginButton.classList.add('hide')
+	mixQuestions = questions.sort(() => Math.random() - .10)
+	currentQuestion = 0
+    codeContainerElement.classList.remove('hide')
+	showQuestion()
+}
+
+,
+
+function showQuestion(){
+	resetState()
+	highlightQuestion(mixQuestions[currentQuestion])
 
 
 }
+,
 
-function showQuestion(question) {
+function highlightQuestion(question){
 	questionElement.innerText = question.question
-	question.answers.forEach(answer =>{
-	const button = document.createElement ("button")
-	button.innerText = answer.text 
-	button.classList.add ("button")
+	question.answers.forEach(answer => {
+	const button = document.createElement('button')
+	button.innerText = answer.text
+	button.classList.add('button')
 	if (answer.correct){
-		button.dataset.correct = answer.correct
+	  button.dataset.correct = answer.correct
 	}
-	button.addEventListener ('click', chooseAnswer)
+	button.addEventListener('click', chooseAnswer)
 	responseButtonsElement.appendChild(button)
-
-	})
-		
+})
 
 }
+,
 
-function resetState(){
+function resetState() {
 	clearStatusClass(document.body)
-	nextButton.classList.add("hide")
-	while (responseButtonsElement.firstChild) {
-		responseButtonsElement.removeChild
-		(responseButtonsElement.firstChild)
-	}
+  nextButton.classList.add('hide')
+  while (responseButtonsElement.firstChild){
+	  responseButtonsElement.removeChild
+	  (responseButtonsElement.firstChild)
+  }
+
 }
+,
 
 function chooseAnswer(e){
-	const selectedButton = e.target
-	const correct = selectedButton.dataset.correct
-	setStatusClass(document.body, correct)
-	Array.from(responseButtonsElement.children).forEach(button => {
-		setStatusClass(button, button.dataset.correct)
-	})
-	if (mixQuestions.length > currentQuestion + 1){
-    	nextButton.classList.remove ("hide")	
-	} else{
-		beginButton.innerText = 'Restart'
-		beginButton.classList.remove("hide")
-	}
-
-
+  const selectedButton = e.target
+  const correct = selectedButton.dataset.correct
+  setStatusClass(document.body, correct)
+  Array.from(responseButtonsElement.children).forEach(button => {
+  setStatusClass(button, button.dataset.correct)
+ })
+ if (mixQuestions.length > currentQuestion + 1) {
+	nextButton.classList.remove('hide')
+ } else {
+	 startButton.innerText = 'Restart'
+	 startButton.classList.remove('hide')
+ }
+ 
 }
-
-function setStatusClass(element, correct) {
+,
+function setStatusClass(element, correct){
 	clearStatusClass(element)
-	if (correct){
-		element.classList.add('correct')
-	} else {
-		element.classList.add ('wrong')
-	}
-	
-}
+	if (correct) {
+	element.classList.add('correct')	
+} else {
+    element.classList.add('wrong')
 
+   }
+}
+,
 function clearStatusClass(element){
 	element.classList.remove('correct')
 	element.classList.remove('wrong')
+
 }
+,
 
 //WHEN I answer a question incorrectly THEN time is subtracted from the clock , come back to this on resubmit
 
 const questions = [
-	{
+		{
 		question: "A collection of elements of the same data type which may either in order or not, is called a _____.",
 		answers: [ "Array", "String", "Serialized Object", "Object" ],
 		answer:"Array"
