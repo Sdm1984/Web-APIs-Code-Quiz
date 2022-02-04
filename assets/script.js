@@ -5,12 +5,11 @@ const nextButton = document.getElementById("next-btn")
 const codeContainerElement = document.getElementById("code-container")
 const questionElement = document.getElementById("question")
 const responseButtonsElement = document.getElementById("response-buttons")
-const timeH = document.querySelector('hBox');
 
 let mixQuestions, currentQuestion
 
 // Selects element by id
-var mainEl = document.getElementById("h3");
+var mainEl = document.getElementById("****");
 
 var secondsLeft = 10;
 
@@ -32,24 +31,26 @@ function setTime() {
 
 
 
-beginButton.addEventListener('click', startQuiz)
 nextButton.addEventListener('click', () => {
+	if(currentQuestion===mixQuestions.length-1){
+	}
 	currentQuestion++
 	showQuestion();
 
-}
+})
 
-	,
+	
 
 	function startQuiz() {
 		beginButton.classList.add('hide')
 		mixQuestions = questions.sort(() => Math.random() - .10)
+		console.log(mixQuestions)
 		currentQuestion = 0
 		codeContainerElement.classList.remove('hide')
 		showQuestion()
 	}
 
-	,
+	
 
 	function showQuestion() {
 		resetState()
@@ -57,13 +58,13 @@ nextButton.addEventListener('click', () => {
 
 
 	}
-	,
+	
 
 	function highlightQuestion(question) {
-		questionElement.innerText = question.question
+		questionElement.innerText ="Question: "+ question.question
 		question.answers.forEach(answer => {
 			const button = document.createElement('button')
-			button.innerText = answer.text
+			button.innerText = answer
 			button.classList.add('button')
 			if (answer.correct) {
 				button.dataset.correct = answer.correct
@@ -73,7 +74,7 @@ nextButton.addEventListener('click', () => {
 		})
 
 	}
-	,
+	
 
 	function resetState() {
 		clearStatusClass(document.body)
@@ -84,7 +85,7 @@ nextButton.addEventListener('click', () => {
 		}
 
 	}
-	,
+	
 
 	function chooseAnswer(e) {
 		const selectedButton = e.target
@@ -101,7 +102,7 @@ nextButton.addEventListener('click', () => {
 		}
 
 	}
-	,
+	
 	function setStatusClass(element, correct) {
 		clearStatusClass(element)
 		if (correct) {
@@ -111,13 +112,13 @@ nextButton.addEventListener('click', () => {
 
 		}
 	}
-	,
+	
 	function clearStatusClass(element) {
 		element.classList.remove('correct')
 		element.classList.remove('wrong')
 
 	}
-,
+
 
 //WHEN I answer a question incorrectly THEN time is subtracted from the clock , come back to this on resubmit
 
@@ -160,37 +161,37 @@ questions = [
 
 
 	{
-		prompt: "In JavaScript, what will be used for calling the function definition expression:",
+		question: "In JavaScript, what will be used for calling the function definition expression:",
 		answers: ["Function prototype", "Function literal", "Function calling", "Function declaration",],
 		answer: "Function literal"
 	},
 
 
 	{
-		prompt: "Which one of the following is not considered a statement in the JavaScript?",
+		question: "Which one of the following is not considered a statement in the JavaScript?",
 		answers: ["use strict", "debugger", "if", "with",],
 		answer: "use strict"
 
 	},
 
 	{
-		prompt: "A set of unordered properties that, has a name and value is called______",
+		question: "A set of unordered properties that, has a name and value is called______",
 		answers: ["String", "Array", "Serialized Object", "Object",],
 		answer: "Object"
 	},
 
 
 	{
-		prompt: "The linkage of a set of prototype objects is known as____",
+		question: "The linkage of a set of prototype objects is known as____",
 		answers: ["prototype stack", "prototype", "prototype class", "prototype chain",],
 		answer: "prototype chain"
 	},
 
-])
+]
 
 
-//WHEN all questions are answered or the timer reaches 0, THEN the game is over
+// WHEN all questions are answered or the timer reaches 0, THEN the game is over
 
-//WHEN the game is over, THEN I can save my initials and my score
+// WHEN the game is over, THEN I can save my initials and my score
 
-
+beginButton.addEventListener('click', startQuiz)

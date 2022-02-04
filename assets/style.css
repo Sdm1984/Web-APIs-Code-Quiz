@@ -54,7 +54,7 @@ body.wrong {
 
 }
 .button.wrong{
---hue: var(--hue-correct);
+--hue: var(--hue-wrong);
 }
 
 /* Box grid style */
@@ -121,3 +121,6 @@ body.wrong {
 }
 
 
+.hide {
+	display:none;
+}
