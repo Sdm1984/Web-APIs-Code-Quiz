@@ -6,123 +6,7 @@ const codeContainerElement = document.getElementById("code-container")
 const questionElement = document.getElementById("question")
 const responseButtonsElement = document.getElementById("response-buttons")
 
-let mixQuestions, currentQuestion
-
-// Selects element by id
-var mainEl = document.getElementById("****");
-
-var secondsLeft = 10;
-
-function setTime() {
-  // Sets interval in variable
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeH.textContent = secondsLeft + " seconds left in the game.";
-
-    if(secondsLeft === 0) {
-      // Stops execution of action at set interval
-      clearInterval(timerInterval);
-      // Calls function to create and append image
-      sendMessage();
-    }
-
-  }, 1000);
-}
-
-
-
-nextButton.addEventListener('click', () => {
-	if(currentQuestion===mixQuestions.length-1){
-	}
-	currentQuestion++
-	showQuestion();
-
-})
-
-	
-
-	function startQuiz() {
-		beginButton.classList.add('hide')
-		mixQuestions = questions.sort(() => Math.random() - .10)
-		console.log(mixQuestions)
-		currentQuestion = 0
-		codeContainerElement.classList.remove('hide')
-		showQuestion()
-	}
-
-	
-
-	function showQuestion() {
-		resetState()
-		highlightQuestion(mixQuestions[currentQuestion])
-
-
-	}
-	
-
-	function highlightQuestion(question) {
-		questionElement.innerText ="Question: "+ question.question
-		question.answers.forEach(answer => {
-			const button = document.createElement('button')
-			button.innerText = answer
-			button.classList.add('button')
-			if (answer.correct) {
-				button.dataset.correct = answer.correct
-			}
-			button.addEventListener('click', chooseAnswer)
-			responseButtonsElement.appendChild(button)
-		})
-
-	}
-	
-
-	function resetState() {
-		clearStatusClass(document.body)
-		nextButton.classList.add('hide')
-		while (responseButtonsElement.firstChild) {
-			responseButtonsElement.removeChild
-				(responseButtonsElement.firstChild)
-		}
-
-	}
-	
-
-	function chooseAnswer(e) {
-		const selectedButton = e.target
-		const correct = selectedButton.dataset.correct
-		setStatusClass(document.body, correct)
-		Array.from(responseButtonsElement.children).forEach(button => {
-			setStatusClass(button, button.dataset.correct)
-		})
-		if (mixQuestions.length > currentQuestion + 1) {
-			nextButton.classList.remove('hide')
-		} else {
-			startButton.innerText = 'Restart'
-			startButton.classList.remove('hide')
-		}
-
-	}
-	
-	function setStatusClass(element, correct) {
-		clearStatusClass(element)
-		if (correct) {
-			element.classList.add('correct')
-		} else {
-			element.classList.add('wrong')
-
-		}
-	}
-	
-	function clearStatusClass(element) {
-		element.classList.remove('correct')
-		element.classList.remove('wrong')
-
-	}
-
-
-//WHEN I answer a question incorrectly THEN time is subtracted from the clock , come back to this on resubmit
-
-questions = [
+const questions = [
 	{
 		question: "A collection of elements of the same data type which may either in order or not, is called a _____.",
 		answers: ["Array", "String", "Serialized Object", "Object"],
@@ -190,8 +74,111 @@ questions = [
 ]
 
 
+
 // WHEN all questions are answered or the timer reaches 0, THEN the game is over
 
+function gameOver(){
+
+
+}
+
 // WHEN the game is over, THEN I can save my initials and my score
+
+
+const mixQuestions = questions.sort(() => Math.random() - .10)
+let currentQuestion = 0
+
+
+nextButton.addEventListener('click', () => {
+	if (currentQuestion === mixQuestions.length - 1) {
+	}
+	currentQuestion++
+	showQuestion();
+
+})
+
+
+
+function startQuiz() {
+	beginButton.classList.add('hide')
+	currentQuestion = 0
+	codeContainerElement.classList.remove('hide')
+	showQuestion()
+}
+
+
+
+function showQuestion() {
+	resetState()
+	highlightQuestion(mixQuestions[currentQuestion])
+
+
+}
+
+
+function highlightQuestion(question) {
+	questionElement.innerText = "Question: " + question.question
+	question.answers.forEach(answer => {
+		const button = document.createElement('button')
+		button.innerText = answer
+		button.classList.add('button')
+		button.addEventListener('click', chooseAnswer)
+		responseButtonsElement.appendChild(button)
+	})
+
+}
+
+
+function resetState() {
+	clearStatusClass(document.body)
+	nextButton.classList.add('hide')
+	while (responseButtonsElement.firstChild) {
+		responseButtonsElement.removeChild
+			(responseButtonsElement.firstChild)
+	}
+
+}
+
+
+function chooseAnswer(e) {
+	const correctAnswer = mixQuestions[currentQuestion].answer
+	console.log(correctAnswer)
+	const selectedButton = e.target.innerText
+	console.log(selectedButton)
+	if (selectedButton === correctAnswer) {
+		console.log("correctAnswer")
+		setStatusClass(responseButtonsElement, true)
+	} else {
+		//WHEN I answer a question incorrectly THEN time is subtracted from the clock
+
+		console.log("wrongAnswer")
+		setStatusClass(responseButtonsElement, false)
+	}
+
+	if (mixQuestions.length > currentQuestion + 1) {
+		nextButton.classList.remove('hide')
+	} else {
+		startButton.innerText = 'Restart'
+		startButton.classList.remove('hide')
+	}
+
+}
+
+function setStatusClass(element, correct) {
+	clearStatusClass(element)
+	if (correct) {
+		element.classList.add('correct')
+	} else {
+		element.classList.add('wrong')
+
+	}
+}
+
+function clearStatusClass(element) {
+	element.classList.remove('correct')
+	element.classList.remove('wrong')
+
+}
+
 
 beginButton.addEventListener('click', startQuiz)

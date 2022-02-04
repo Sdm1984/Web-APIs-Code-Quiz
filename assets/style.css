@@ -31,11 +31,11 @@ body{
 	background-color: hsl(var(--hue-neutral), 100%, 30%);
 }
 
-body.correct {
+.correct {
 	background-color: hsl(var(--hue-correct), 100%, 30%);
 }
 
-body.wrong {
+.wrong {
 	background-color: hsl(var(--hue-wrong), 100%, 30%);
 }
 
