@@ -6,19 +6,30 @@ const codeContainerElement = document.getElementById("code-container")
 const questionElement = document.getElementById("question")
 const responseButtonsElement = document.getElementById("response-buttons")
 const timeH = document.querySelector('hBox');
-let timeSecond = 30;
 
 let mixQuestions, currentQuestion
 
-timeH.innerHTML = '00:${timeSecond}`
+// Selects element by id
+var mainEl = document.getElementById("h3");
 
-const countDown = setInterval(() => {
-	timeSecond--;
-	timeH.innerHTML = `00:${timeSecond}`;
-	if (timeSecond = 0 || timeSecond < 1) {
-		clearInterval(countDown)
-	}
-}, 1000)
+var secondsLeft = 10;
+
+function setTime() {
+  // Sets interval in variable
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeH.textContent = secondsLeft + " seconds left in the game.";
+
+    if(secondsLeft === 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      // Calls function to create and append image
+      sendMessage();
+    }
+
+  }, 1000);
+}
+
 
 
 beginButton.addEventListener('click', startQuiz)
