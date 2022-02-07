@@ -79,14 +79,11 @@ const questions = [
 
 ]
 
-
-// WHEN the game is over, THEN I can save my initials and my score
-
 	/*
-		1.) Use setTimeout to creat a timer for 30 seconds
+		1.) Use setTimeout to create a timer for 30 seconds
 		2.) Pass in Game over function to be called when timer runs out
 		3.) Game over function shows alert saying "Game Over" when called
-
+        4.) When the game is over, then I can save my initials and my score
 	*/
 
 let timer;
@@ -98,10 +95,6 @@ function gameOver(){
 	function alertFunc() {
 	  alert("Game Over!");
 	}
-
-gameOver();
-
-
 
 
 const mixQuestions = questions.sort(() => Math.random() - .10)
@@ -122,6 +115,7 @@ function startQuiz() {
 	beginButton.classList.add('hide')
 	currentQuestion = 0
 	codeContainerElement.classList.remove('hide')
+	gameOver();
 	showQuestion()
 }
 
