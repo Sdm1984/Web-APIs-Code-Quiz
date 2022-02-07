@@ -43,8 +43,40 @@ body{
 	font-size: x-large;
 	color: black;
 	font-weight:normal;
+	
+}
+
+.timer {
+	font-size: x-large;
+	color: black;
+	font-weight:normal;
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	width: 140px;
+	height: 35px;
+	background: white;
+	border: 5px solid black;
+	border-radius: 2px;
+	padding: 0 8px;
+	
+}
+
+.results, .finished {
+	background: white;
+	width:200px;
+	padding: 5px 5px;
+	display:flex;
+	align-items:center;
+	justify-content: space-between;
+	flex-direction: column;
+	text-align: center;
+	border: 3px solid;
+	margin: 10px 0;
 
 }
+
+
 /* Black color will appear when user hovers over answer boxes*/
 .button:hover{
 	border-color: black;

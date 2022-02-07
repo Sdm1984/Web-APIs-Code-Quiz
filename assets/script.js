@@ -6,6 +6,12 @@ const codeContainerElement = document.getElementById("code-container")
 const questionElement = document.getElementById("question")
 const responseButtonsElement = document.getElementById("response-buttons")
 
+
+
+
+
+
+
 const questions = [
 	{
 		question: "A collection of elements of the same data type which may either in order or not, is called a _____.",
@@ -74,15 +80,28 @@ const questions = [
 ]
 
 
+// WHEN the game is over, THEN I can save my initials and my score
 
-// WHEN all questions are answered or the timer reaches 0, THEN the game is over
+	/*
+		1.) Use setTimeout to creat a timer for 30 seconds
+		2.) Pass in Game over function to be called when timer runs out
+		3.) Game over function shows alert saying "Game Over" when called
+
+	*/
+
+let timer;
 
 function gameOver(){
+	 timer = setTimeout(alertFunc, 30000);
+	}
+	
+	function alertFunc() {
+	  alert("Game Over!");
+	}
+
+gameOver();
 
 
-}
-
-// WHEN the game is over, THEN I can save my initials and my score
 
 
 const mixQuestions = questions.sort(() => Math.random() - .10)
@@ -181,4 +200,5 @@ function clearStatusClass(element) {
 }
 
 
-beginButton.addEventListener('click', startQuiz)
+beginButton.addEventListener('click', startQuiz);
+
