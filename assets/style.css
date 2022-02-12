@@ -46,20 +46,9 @@ body{
 	
 }
 
-.timer {
-	font-size: x-large;
+#timer {
+	font-size: xx-large;
 	color: black;
-	font-weight:normal;
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
-	width: 140px;
-	height: 35px;
-	background: white;
-	border: 5px solid black;
-	border-radius: 2px;
-	padding: 0 8px;
-	
 }
 
 .results, .finished {
@@ -120,13 +109,22 @@ body{
 }
 
  /* Game button font-size and font-weight */
-.begin-btn, .next-btn {
+.begin-btn, .next-btn,#saveScoreBtn,#restartScoreBtn {
 	font-size: 2.0rem;
 	padding: 2px 10px;
 	font-weight: 100px;
 	border: 5px solid;
 	margin: 2px
+}
 	
+#saveScoreBtn, #restartScoreBtn {
+	align-items:center;
+	margin: auto;
+	display:flex;
+
+
+}
+
 }
 /* Game button class style */
 .navigation {
@@ -136,7 +134,7 @@ body{
 	font-weight: bold;
 }
 
-.box {  /* Create a flex layout context */
+.box,#time-left {  /* Create a flex layout context */
 	display: flex;
 	border:solid;
 	border-width: 10px;
@@ -156,3 +154,37 @@ body{
 .hide {
 	display:none;
 }
+/* 
+gamescores html */
+.container-two{
+	width: 100%;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 30rem;
+
+}
+
+input {
+	margin-bottom: 1rem;
+	width: 10rem;
+	padding:1.5rem;
+	font-size:medium;
+	border: none;
+	box-shadow: 0 0.1rem 1.4 rem 0 black;
+}
+
+#username{
+	margin-bottom: 3rem;
+	width:100%;
+	outline:none;
+}
+
+#end-text{
+	font-size: 2.4rem;
+	text-align: center;
+	color:black;
+
+}
+
+

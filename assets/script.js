@@ -5,11 +5,7 @@ const nextButton = document.getElementById("next-btn")
 const codeContainerElement = document.getElementById("code-container")
 const questionElement = document.getElementById("question")
 const responseButtonsElement = document.getElementById("response-buttons")
-
-
-
-
-
+const timerElement = document.getElementById("timer")
 
 
 const questions = [
@@ -79,22 +75,50 @@ const questions = [
 
 ]
 
-	/*
-		1.) Use setTimeout to create a timer for 30 seconds
-		2.) Pass in Game over function to be called when timer runs out
-		3.) Game over function shows alert saying "Game Over" when called
-        4.) When the game is over, then I can save my initials and my score
-	*/
+// 1. You need to create a separate function for the timer using a setInterval() with a value of 1000.
+// 2. You need to set the inner text of the timer var to the set interval value.
+var timeleftElement = document.getElementById("time-left");
 
-let timer;
 
-function gameOver(){
-	 timer = setTimeout(alertFunc, 30000);
-	}
-	
-	function alertFunc() {
-	  alert("Game Over!");
-	}
+
+/*
+	1.) Use setTimeout to create a timer for 30 seconds
+	2.) Pass in Game over function to be called when timer runs out
+	3.) Game over function shows alert saying "Game Over" when called
+	4.) When the game is over, then I can save my initials and my score
+*/
+
+let timer = 60
+let intervalId
+
+
+//HTML Ids from gamescores.html page
+
+const highscoreSave = document.getElementById("saveScoreBtn")
+const highscoreRestart = document.getElementById("restartScoreBtn")
+
+//When the clock is on 0 then switch to the gamescores page
+function gameOver() {
+timer = 0
+
+
+}
+
+//Write logic for when the user clicks the save btn on gamescores.html button their name and score appears on the page.
+function saveName (){
+
+}
+
+
+
+
+//When user clicks restart from gamescores.html, the game starts over from index.html page
+function restartGame(){
+
+
+}
+
+
 
 
 const mixQuestions = questions.sort(() => Math.random() - .10)
@@ -109,10 +133,21 @@ nextButton.addEventListener('click', () => {
 
 })
 
+function decreaseTimer() {
+	timer = timer - 1
+	timerElement.innerText = timer
+	//if timer is = to 0 then use clearInterval (intervalId)
+	if (timer === 0) {
+		clearInterval(intervalId);
+		gameOver()
+	}
+}
 
 
 function startQuiz() {
 	beginButton.classList.add('hide')
+	timerElement.innerText = timer
+	intervalId = setInterval(decreaseTimer, 1000)
 	currentQuestion = 0
 	codeContainerElement.classList.remove('hide')
 	gameOver();
@@ -163,7 +198,7 @@ function chooseAnswer(e) {
 		setStatusClass(responseButtonsElement, true)
 	} else {
 		//WHEN I answer a question incorrectly THEN time is subtracted from the clock
-
+		timer = timer - 5
 		console.log("wrongAnswer")
 		setStatusClass(responseButtonsElement, false)
 	}
