@@ -95,27 +95,29 @@ let intervalId
 const highscoreSave = document.getElementById("saveScoreBtn")
 const highscoreRestart = document.getElementById("restartScoreBtn")
 
-//When the clock is on 0 then switch to the gamescores page
+
 function gameOver() {
-timer => 0
 
 
 }
 
 //Write logic for when the user clicks the save button on gamescores.html button their name and score appears on the page.
-function saveDetails (){
+// function saveDetails (){
+// highscoreSave.addEventListener('click', ****);
 
-}
-
-
+// }
 
 
 //When user clicks restart button from gamescores.html, the game starts over from index.html page
-function restartGame(){
 
+function restartGame(){
+highscoreRestart.addEventListener('click', startQuiz);
+//then switch to the gamescores page
+location.pathname =
+location.pathname.replace("/gamescores.html", "") + "/index.html"; 
+clearInterval(intervalId);
 
 }
-
 
 
 
@@ -146,7 +148,8 @@ function decreaseTimer() {
 	timerElement.innerText = timer;
 	// if timer is = to 0 then use clearInterval (intervalId)
 	// Less than or equal to O
-	if (timer <= 0) {
+	if (timer <= 0) {    
+	//then switch to the gamescores page
 	  location.pathname =
 		location.pathname.replace("/index.html", "") + "/gamescores.html";
 	  clearInterval(intervalId);
