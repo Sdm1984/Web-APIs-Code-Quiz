@@ -79,10 +79,8 @@ const questions = [
 // 2. You need to set the inner text of the timer var to the set interval value.
 var timeleftElement = document.getElementById("time-left");
 
-
-
 /*
-	1.) Use setTimeout to create a timer for 30 seconds
+	1.) Use setTimeout to create a timer for 60 seconds
 	2.) Pass in Game over function to be called when timer runs out
 	3.) Game over function shows alert saying "Game Over" when called
 	4.) When the game is over, then I can save my initials and my score
@@ -97,22 +95,16 @@ let intervalId
 const highscoreSave = document.getElementById("saveScoreBtn")
 const highscoreRestart = document.getElementById("restartScoreBtn")
 
-//When the clock is on 0 then switch to the gamescores page
-function gameOver() {
-timer = 0
-
-
 }
 
-//Write logic for when the user clicks the save btn on gamescores.html button their name and score appears on the page.
-function saveName (){
+//Write logic for when the user clicks the save button on gamescores.html button their name and score appears on the page.
+function saveDetails (){
 
 }
 
 
 
-
-//When user clicks restart from gamescores.html, the game starts over from index.html page
+//When user clicks restart button from gamescores.html, the game starts over from index.html page
 function restartGame(){
 
 
@@ -133,15 +125,27 @@ nextButton.addEventListener('click', () => {
 
 })
 
+// function decreaseTimer() {
+// 	timer = timer - 1
+// 	timerElement.innerText = timer
+// 	//if timer is = to 0 then use clearInterval (intervalId)
+// 	if (timer === 0) {
+// 		clearInterval(intervalId);
+// 		gameOver()
+// 	}
+// }
+
 function decreaseTimer() {
-	timer = timer - 1
-	timerElement.innerText = timer
-	//if timer is = to 0 then use clearInterval (intervalId)
-	if (timer === 0) {
-		clearInterval(intervalId);
-		gameOver()
+	timer = timer - 1;
+	timerElement.innerText = timer;
+	// if timer is = to 0 then use clearInterval (intervalId)
+	// Less than or equal to O
+	if (timer <= 0) {
+	  location.pathname =
+		location.pathname.replace("/index.html", "") + "/gamescores.html";
+	  clearInterval(intervalId);
 	}
-}
+  }
 
 
 function startQuiz() {
