@@ -95,12 +95,18 @@ let intervalId
 const highscoreSave = document.getElementById("saveScoreBtn")
 const highscoreRestart = document.getElementById("restartScoreBtn")
 
+//When the clock is on 0 then switch to the gamescores page
+function gameOver() {
+timer => 0
+
+
 }
 
 //Write logic for when the user clicks the save button on gamescores.html button their name and score appears on the page.
 function saveDetails (){
 
 }
+
 
 
 
