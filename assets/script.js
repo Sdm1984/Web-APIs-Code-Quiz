@@ -88,34 +88,47 @@ var timeleftElement = document.getElementById("time-left");
 
 let timer = 60
 let intervalId
+let score = 0
 
 
 //HTML Ids from gamescores.html page
 
-const highscoreSave = document.getElementById("saveScoreBtn")
-const highscoreRestart = document.getElementById("restartScoreBtn")
+let highscoreSaveElement
+let highscoreRestartElement
+let enterInitialsElement
+let finalScoreElement
+
 
 
 function gameOver() {
-
+	location.pathname =
+		location.pathname.replace("/index.html", "") + "/gamescores.html";
+		console.log(score)
+	getGameScoreElements()
+	finalScoreElement.innerText = score
 
 }
 
-//Write logic for when the user clicks the save button on gamescores.html button their name and score appears on the page.
-// function saveDetails (){
-// highscoreSave.addEventListener('click', ****);
+function getGameScoreElements() {
+	highscoreSaveElement = document.getElementById("saveScoreBtn")
+	highscoreRestartElement = document.getElementById("restartScoreBtn")
+	enterInitialsElement = document.getElementById("username")
+	finalScoreElement = document.getElementById("final-Score")
+}
 
-// }
+//Write logic for when the user clicks the save button on gamescores.html their name and score appears on the page.
+function saveDetails() {
+	highscoreSave.addEventListener('click',);
+}
 
 
 //When user clicks restart button from gamescores.html, the game starts over from index.html page
 
-function restartGame(){
-highscoreRestart.addEventListener('click', startQuiz);
-//then switch to the gamescores page
-location.pathname =
-location.pathname.replace("/gamescores.html", "") + "/index.html"; 
-clearInterval(intervalId);
+function restartGame() {
+	highscoreRestart.addEventListener('click', startQuiz);
+	//then switch to the gamescores page
+	location.pathname =
+		location.pathname.replace("/gamescores.html", "") + "/index.html";
 
 }
 
@@ -148,13 +161,12 @@ function decreaseTimer() {
 	timerElement.innerText = timer;
 	// if timer is = to 0 then use clearInterval (intervalId)
 	// Less than or equal to O
-	if (timer <= 0) {    
-	//then switch to the gamescores page
-	  location.pathname =
-		location.pathname.replace("/index.html", "") + "/gamescores.html";
-	  clearInterval(intervalId);
+	if (timer <= 0) {
+		//then switch to the gamescores page
+		clearInterval(intervalId);
+		gameOver()
 	}
-  }
+}
 
 
 function startQuiz() {
@@ -163,7 +175,6 @@ function startQuiz() {
 	intervalId = setInterval(decreaseTimer, 1000)
 	currentQuestion = 0
 	codeContainerElement.classList.remove('hide')
-	gameOver();
 	showQuestion()
 }
 
@@ -207,7 +218,8 @@ function chooseAnswer(e) {
 	const selectedButton = e.target.innerText
 	console.log(selectedButton)
 	if (selectedButton === correctAnswer) {
-		console.log("correctAnswer")
+		score = score + 1
+		console.log(score)
 		setStatusClass(responseButtonsElement, true)
 	} else {
 		//WHEN I answer a question incorrectly THEN time is subtracted from the clock
