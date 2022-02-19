@@ -101,37 +101,16 @@ let finalScoreElement
 
 
 function gameOver() {
+	sessionStorage.setItem("score", score)
 	location.pathname =
 		location.pathname.replace("/index.html", "") + "/gamescores.html";
-		console.log(score)
-	getGameScoreElements()
-	finalScoreElement.innerText = score
-
-}
-
-function getGameScoreElements() {
-	highscoreSaveElement = document.getElementById("saveScoreBtn")
-	highscoreRestartElement = document.getElementById("restartScoreBtn")
-	enterInitialsElement = document.getElementById("username")
-	finalScoreElement = document.getElementById("final-Score")
+		
 }
 
 //Write logic for when the user clicks the save button on gamescores.html their name and score appears on the page.
 function saveDetails() {
 	highscoreSave.addEventListener('click',);
 }
-
-
-//When user clicks restart button from gamescores.html, the game starts over from index.html page
-
-function restartGame() {
-	highscoreRestart.addEventListener('click', startQuiz);
-	//then switch to the gamescores page
-	location.pathname =
-		location.pathname.replace("/gamescores.html", "") + "/index.html";
-
-}
-
 
 
 const mixQuestions = questions.sort(() => Math.random() - .10)

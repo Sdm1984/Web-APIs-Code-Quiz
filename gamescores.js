@@ -5,48 +5,43 @@
 	4.) When the game is over, then I can save my initials and my score
 */
 
-let timer = 60
-let intervalId
-let score = 0
+const highscoreSaveElement = document.getElementById("saveScoreBtn")
+const highscoreRestartElement = document.getElementById("restartScoreBtn")
+const enterInitialsElement = document.getElementById("username")
+const finalScoreElement = document.getElementById("final-Score")
+const scoreListElement = document.getElementById("scoreList")
 
-
-//HTML Ids from gamescores.html page
-
-let highscoreSaveElement
-let highscoreRestartElement
-let enterInitialsElement
-let finalScoreElement
-
-
-
-function gameOver() {
-	location.pathname =
-		location.pathname.replace("/index.html", "") + "/gamescores.html";
-		console.log(score)
-	getGameScoreElements()
-	finalScoreElement.innerText = score
-
+const savedHighscoreList = JSON.parse(localStorage.getItem("highscoreList"))
+let highscoreList = savedHighscoreList
+if (!highscoreList) {
+	highscoreList = []
 }
-
-function getGameScoreElements() {
-	highscoreSaveElement = document.getElementById("saveScoreBtn")
-	highscoreRestartElement = document.getElementById("restartScoreBtn")
-	enterInitialsElement = document.getElementById("username")
-	finalScoreElement = document.getElementById("final-Score")
-}
-
-//Write logic for when the user clicks the save button on gamescores.html their name and score appears on the page.
-function saveDetails() {
-	highscoreSave.addEventListener('click',);
-}
-
-
-//When user clicks restart button from gamescores.html, the game starts over from index.html page
+const finalScore = sessionStorage.getItem("score")
+console.log(finalScore)
+finalScoreElement.innerText = finalScore
+highscoreRestartElement.addEventListener('click', restartGame);
+highscoreSaveElement.addEventListener('click', saveHighscore);
 
 function restartGame() {
-	highscoreRestart.addEventListener('click', startQuiz);
-	//then switch to the gamescores page
+	// highscoreRestart.addEventListener('click', startQuiz);
 	location.pathname =
 		location.pathname.replace("/gamescores.html", "") + "/index.html";
-
 }
+
+//Create a function that assigns the score & initials inside of an array to local storage
+function saveHighscore() {
+	const initials = enterInitialsElement.value
+	const highScore = {
+		name: initials, score: finalScore
+	}
+highscoreList.push(highScore)
+localStorage.setItem("highscoreList", JSON.stringify(highscoreList))
+restartGame()
+}
+
+/*
+Last TODO:
+- Create an element
+- Save the element to a variable by doing getElementById
+- Save each highscore in the list inside of the highscore element's container
+*/
