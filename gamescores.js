@@ -25,8 +25,9 @@ displayHighscores()
 
 function restartGame() {
 	// highscoreRestart.addEventListener('click', startQuiz);
-	location.pathname =
-		location.pathname.replace("/gamescores.html", "") + "/index.html";
+	window.location.href = "gamescores.html";
+	// location.pathname =
+	// 	location.pathname.replace("/gamescores.html", "") + "/index.html";
 }
 
 //Create a function that assigns the score & initials inside of an array to local storage
