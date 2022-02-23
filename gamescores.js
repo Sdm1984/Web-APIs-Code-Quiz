@@ -9,7 +9,7 @@ const highscoreSaveElement = document.getElementById("saveScoreBtn")
 const highscoreRestartElement = document.getElementById("restartScoreBtn")
 const enterInitialsElement = document.getElementById("username")
 const finalScoreElement = document.getElementById("final-Score")
-const scoreListElement = document.getElementById("scoreList")
+const highScoresElement = document.getElementById("high-Scores")
 
 const savedHighscoreList = JSON.parse(localStorage.getItem("highscoreList"))
 let highscoreList = savedHighscoreList
@@ -21,6 +21,7 @@ console.log(finalScore)
 finalScoreElement.innerText = finalScore
 highscoreRestartElement.addEventListener('click', restartGame);
 highscoreSaveElement.addEventListener('click', saveHighscore);
+displayHighscores()
 
 function restartGame() {
 	// highscoreRestart.addEventListener('click', startQuiz);
@@ -39,6 +40,13 @@ localStorage.setItem("highscoreList", JSON.stringify(highscoreList))
 restartGame()
 }
 
+function displayHighscores(){
+savedHighscoreList.forEach(highscore => {
+	const element = document.createElement('p')
+	element.innerText = highscore.name + " = " + highscore.score
+	highScoresElement.appendChild(element) 
+})
+}
 /*
 Last TODO:
 - Create an element

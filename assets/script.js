@@ -210,8 +210,9 @@ function chooseAnswer(e) {
 	if (mixQuestions.length > currentQuestion + 1) {
 		nextButton.classList.remove('hide')
 	} else {
-		startButton.innerText = 'Restart'
-		startButton.classList.remove('hide')
+		gameOver()
+		// startButton.innerText = 'Restart'
+		// startButton.classList.remove('hide')
 	}
 
 }
