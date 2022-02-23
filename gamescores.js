@@ -36,17 +36,17 @@ function saveHighscore() {
 	const highScore = {
 		name: initials, score: finalScore
 	}
-highscoreList.push(highScore)
-localStorage.setItem("highscoreList", JSON.stringify(highscoreList))
-restartGame()
+	highscoreList.push(highScore)
+	localStorage.setItem("highscoreList", JSON.stringify(highscoreList))
+	restartGame()
 }
 
-function displayHighscores(){
-savedHighscoreList.forEach(highscore => {
-	const element = document.createElement('p')
-	element.innerText = highscore.name + " = " + highscore.score
-	highScoresElement.appendChild(element) 
-})
+function displayHighscores() {
+	savedHighscoreList.forEach(highscore => {
+		const element = document.createElement('p')
+		element.innerText = highscore.name + " = " + highscore.score
+		highScoresElement.appendChild(element)
+	})
 }
 /*
 Last TODO:
